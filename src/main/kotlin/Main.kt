@@ -1,24 +1,26 @@
-fun main() {
+fun main(){
     val currentAmount = 100.0
-    val prevAmount = 10_001
+    val prevAmount = 10001
     val discountMin = 100.0
     val discountMax = currentAmount*5/100
-    val meloman = true
-    var totalPrice:Double = currentAmount
-    if (prevAmount>=1001 && prevAmount<=10_000){
-        totalPrice-=discountMin
-        println("Скидка: $discountMin руб.")
-    }else if(meloman && prevAmount>=10_001){
-        val discountMeloman=(totalPrice-discountMax)/100
-        val discount=discountMeloman+discountMax
-        totalPrice-=discount
-        println("Скидка для меломана: $discount руб.")
-    }else if(prevAmount>=10_001){
-        totalPrice-=discountMax
-        println("Скидка: $discountMax")
-    }
+    val isDiscountSuper = true
+    val discountSuper=(currentAmount-discountMax)/100+discountMax
+    val result=if(prevAmount in 1001..10_000){
+                          println("Скидка: $discountMin руб.")
+                          currentAmount-discountMin
+                      }else if(isDiscountSuper && prevAmount>=10001){
+                                 println("Скидка для меломана: $discountSuper руб.")
+                                 currentAmount-discountSuper
+                      }else if(prevAmount>=10_001){
+                               println("Скидка: $discountMax")
+                               currentAmount-discountMax
+                      } else {
+                              println("Скидки нет")
+                              currentAmount
+                      }
 
-    println("Общая сумма: $totalPrice руб.")
+    println("Общая сумма: $result руб.")
+
 
 }
 
